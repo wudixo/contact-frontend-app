@@ -11,15 +11,15 @@
        src: target
        dest: /home/ansible
     - name : Build Docker Image
-      command: docker build -t wudixo/mavenwebapp .
+      command: docker build -t wudixo/contactui .
     - name : Push Docker Image
-      command: docker push wudixo/mavenwebapp
+      command: docker push wudixo/contactui
 - name: Second Play - K8S Deployment
   hosts: kubernetes
   tasks:
    - name: Copy K8S Manifest yml
      copy:
-       src: k8s-deploy.yml
+       src: contact_ui_deployment.yml
        dest: /home/ansible
    - name : K8S Deployment
-     command: kubectl apply -f k8s-deploy.yml
+     command: kubectl apply -f contact_ui_deployment.yml
